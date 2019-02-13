@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper    
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 
+<mapper namespace="org.member.config.MyMember">
+
+<!-- insert -->
+<insert id="insertMember" parameterType="MemberVO">
+	insert into 
+	springmember(id,name,pass,addr,memo,reg_date) 
+	values(#{id},#{name},#{pass},#{addr},#{memo},sysdate)
+</insert>
+
+<!-- list -->
+<select id="listMember" resultType="MemberVO">
+ 	select *
+ 	from springmember
+</select>
+
+<!-- delete -->
+<delete id="deleteMember" parameterType="String">
+	delete from springmember
+	where id=#{id}
+</delete>
+
+<!-- detail -->
+<select id="detailMember" resultType="MemberVO" parameterType="String">
+	select *
+	from springmember
+	where id=#{id}
+</select>
+
+<!-- update -->
+<update id="updateMember" parameterType="MemberVO">
+ 	update springmember
+ 	set name=#{name}, addr=#{addr}, memo=#{memo}, pass=#{pass}
+ 	where id=#{id}
+</update>
+<select id="selectMember" resultType="MemberVO" parameterType="HashMap">
+ 	select *
+ 	from springmember
+ 	where ${field } like '%${word}%'
+</select>
+
+
+</mapper>
+ 
